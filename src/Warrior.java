@@ -33,7 +33,7 @@ public class Warrior implements Hero{
     }
 
     @Override
-    public double attack(Warrior w) {
+    public double attack(Warrior w) {//There are Warrior and Archer attacks that check whether the attack will kill the enemy or not. and display the result message.
         System.out.println("Warrior " + this.name + " Attack Warrior " + w.name);
         if (atk - w.def > 0) {
             if(atk-w.def >= w.HP){
@@ -48,7 +48,7 @@ public class Warrior implements Hero{
         }
     }
     @Override
-    public double attack(Archer a){
+    public double attack(Archer a){//There are Warrior and Archer attacks that check whether the attack will kill the enemy or not. and display the result message.
         if(atk - a.def > 0){
             if(atk-a.def >= a.HP){
                 a.HP = 0;
@@ -62,7 +62,7 @@ public class Warrior implements Hero{
         }
     }
     @Override
-    public void equip_Weapon_Sword() {
+    public void equip_Weapon_Sword() {//Used for changing weapons according to conditions.
         if(!equipBow){
             s1 = new Sword("Fire Sword");
             atk = Base_ATK + (2.5*level) + s1.getAtk();
@@ -74,7 +74,7 @@ public class Warrior implements Hero{
         }
     }
     @Override
-    public void equip_Weapon_Bow() {
+    public void equip_Weapon_Bow() {//Used for changing weapons according to conditions.
         if(!equipSword){
             b1 = new Bow("Cross Bow");
             atk = Base_ATK + (2.5*level) + (double)(1/2)*b1.getAtk();
@@ -87,7 +87,7 @@ public class Warrior implements Hero{
     }
 
     @Override
-    public void Level_UP() {
+    public void Level_UP() {//Increase various power points for the character.
         level = level+1;
         Max_HP = Max_HP + (10*level);
         Max_Mana = Max_Mana + (2*level);
@@ -104,14 +104,14 @@ public class Warrior implements Hero{
     }
 
     @Override
-    public void getMaxInfo() {
+    public void getMaxInfo() {//Shows Warrior peak and current data.
         System.out.println("Name: "+this.name + " Level: " + this.level + " Maximum HP: "+this.Max_HP+ " Maximum Mana: "+this.Max_Mana+" Max Speed: "+this.Max_Speed+ " Base ATK: "+this.Base_ATK+" Base DEF: "+this.Base_DEF);
     }
     @Override
     public void getCurrentInfo(){
         System.out.println("Name: "+this.name + " Level: " + this.level + " Current HP: "+this.HP+ " Current Mana: "+this.Mana+" Current Speed: "+this.speed+ " Current ATK: "+this.atk+" Current DEF: "+this.def);
     }
-    public double Crazy_Warrior(Warrior w){
+    public double Crazy_Warrior(Warrior w){//It is a unique skill of the Warrior that is used to attack enemies.
         if(w.HP <= 0){
             System.out.println("This round was ended pls restart again.");
             return 0;
@@ -131,7 +131,7 @@ public class Warrior implements Hero{
             return 0;
         }
     }
-    public double Crazy_Warrior(Archer a){
+    public double Crazy_Warrior(Archer a){//It is a unique skill of the Archer that is used to attack enemies.
         if(a.HP <= 0){
             System.out.println("This round was ended pls restart again.");
             return 0;
@@ -152,29 +152,29 @@ public class Warrior implements Hero{
         }
     }
     @Override
-    public void unequipSword(){
+    public void unequipSword(){//Execution of these functions will prevent the Warrior from using weapons that are not equipped.
         equipSword = false;
         atk = Base_ATK + (10*level);
         speed = Max_Speed;
     }
     @Override
-    public void unequipBow(){
+    public void unequipBow(){//Execution of these functions will prevent the Warrior from using weapons that are not equipped.
         equipBow = false;
         atk = Base_ATK + (10*level);
         speed = Max_Speed;
     }
-    private void gameEnd(Warrior w){
+    private void gameEnd(Warrior w){//Warrior win!
         if(w.HP <= 0){
             System.out.println("Warrior "+w.name + " died! Warrior "+this.name+" Win!");
         }
     }
-    private void gameEnd(Archer a){
+    private void gameEnd(Archer a){//archer win!
         if(a.HP <= 0){
             System.out.println("Archer "+a.name + " died! Warrior "+this.name+" Win!");
         }
     }
     @Override
-    public void enhance(){
+    public void enhance(){//Used to strengthen the weapons used.
         if(equipSword && !equipBow){
             s1.enhance();
             atk = Base_ATK + (2.5*level) + s1.getAtk();

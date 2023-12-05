@@ -1,5 +1,5 @@
 public class Archer implements Hero{
-    private double Max_HP;
+    private double Max_HP; 
     protected double HP;
     private double Max_Mana;
     private double Mana;
@@ -32,7 +32,7 @@ public class Archer implements Hero{
     }
 
     @Override
-    public double attack(Warrior w) {
+    public double attack(Warrior w) { //There are Warrior and Archer attacks that check whether the attack will kill the enemy or not. and display the result message.
         if (atk - w.def > 0) {
             if(atk-w.def >= w.HP){
                 w.HP = 0;
@@ -47,12 +47,12 @@ public class Archer implements Hero{
     }
 
     @Override
-    public double attack(Archer a) {
-        if(a.HP <= 0){
+    public double attack(Archer a) { //There are Warrior and Archer attacks that check whether the attack will kill the enemy or not. and display the result message.
+        if(a.HP <= 0){//Start new turn when HP = 0
             System.out.println("This round was ended pls restart again.");
             return 0;
         }
-        if(atk - a.def > 0){
+        if(atk - a.def > 0){//When the attack value is greater than 0, it may cause HP loss or all HP.
             if(atk-a.def >= a.HP){
                 a.HP = 0;
             }else{
@@ -66,7 +66,7 @@ public class Archer implements Hero{
     }
 
     @Override
-    public void equip_Weapon_Sword() {
+    public void equip_Weapon_Sword() {//Used for changing weapons according to conditions.
         if(!equipBow){
             s1 = new Sword("Fire Sword");
             atk = Base_ATK + (2.5*level) + (double)(1/2)*s1.getAtk();
@@ -78,7 +78,7 @@ public class Archer implements Hero{
         }
     }
     @Override
-    public void equip_Weapon_Bow() {
+    public void equip_Weapon_Bow() {//Used for changing weapons according to conditions.
         if(!equipSword){
             b1 = new Bow("Cross Bow");
             atk = Base_ATK + (2.5*level) + b1.getAtk();
@@ -103,8 +103,8 @@ public class Archer implements Hero{
         atk = Base_ATK + (15*level);
         speed = Max_Speed;
     }
-    public double Arrow_Inferno(Warrior w){
-        if(w.HP <= 0){
+    public double Arrow_Inferno(Warrior w){//Function to check level advancement and unlock skills
+        if(w.HP <= 0){//Start new turn when HP = 0
             System.out.println("This round was ended pls restart again.");
             return 0;
         }
@@ -129,8 +129,8 @@ public class Archer implements Hero{
         return 0;
     }
 
-    public double Arrow_Inferno(Archer a){
-        if(a.HP <= 0){
+    public double Arrow_Inferno(Archer a){//Function to check level advancement and unlock skills
+        if(a.HP <= 0){//Start new turn when HP = 0
             System.out.println("This round was ended pls restart again.");
             return 0;
         }
@@ -155,7 +155,7 @@ public class Archer implements Hero{
         }
     }
     @Override
-    public void Level_UP() {
+    public void Level_UP() { //Increase various power points for the character.
         level = level+1;
         Max_HP = Max_HP + (8*level);
         Max_Mana = Max_Mana + (5*level);
@@ -172,7 +172,7 @@ public class Archer implements Hero{
     }
 
     @Override
-    public void getMaxInfo() {
+    public void getMaxInfo() {//Shows Archer's peak and current data.
         System.out.println("Name: "+this.name + " Level: " + this.level + " Maximum HP: "+this.Max_HP+ " Maximum Mana: "+this.Max_Mana+" Max Speed: "+this.Max_Speed+ " Base ATK: "+this.Base_ATK+" Base DEF: "+this.Base_DEF);
     }
 
@@ -191,7 +191,7 @@ public class Archer implements Hero{
         }
     }
     @Override
-    public void enhance(){
+    public void enhance(){//Used to strengthen the weapons used.
         if(equipSword && !equipBow){
             s1.enhance();
             atk = Base_ATK + (2.5*level) + (double)(1/2)*s1.getAtk();
